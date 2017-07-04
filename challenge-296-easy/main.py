@@ -1,17 +1,21 @@
 
-twelvedays = [('First','Partrige in a Pear Tree'),
-('Second','Turtle Doves'), ('Third','French Hens'),
-('Forth','Calling Birds'), ('Fifth','Golden Rings'),
-('Sixth','Geese a Laying'), ('Seventh','Swans a Swimming'),
-('Eighth','Maids a Milking'),('Ninth', 'Ladies Dancing'),
-('Tenth','Lords a Leaping'),('Elevnth','Pipers Piping'),
-('Twelvth','Drummers Drumming')]
+
+twelvedays = [
+    ('first','Partridge in a Pear Tree'), ('second','Turtle Doves'),
+    ('third','French Hens'),('forth','Calling Birds'),
+    ('fifth','Golden Rings'),('sixth','Geese a Laying'),
+    ('seventh','Swans a Swimming'),('eighth','Maids a Milking'),
+    ('ninth', 'Ladies Dancing'),('tenth','Lords a Leaping'),
+    ('eleventh','Pipers Piping'),('twelfth','Drummers Drumming')
+    ]
 
 def twelvedaysofchristmas():
-    print("Runing")
     for dayindex,day in enumerate(twelvedays):
-         print ('On the {} day of Christmas my true love gave to me' .format(day[0]))
+         print ('On the {} day of Christmas\nmy true love sent to me:' .format(day[0]))
          for giftindex, gift in enumerate(twelvedays[dayindex::-1]):
-             print ("{} {}".format(dayindex-giftindex +1, gift[1]))
+             print ("{}{} {}".format(('and ' if giftindex == dayindex and giftindex != 0 else '' ),
+                                        dayindex-giftindex +1, gift[1]))
+         print(' ')
 
-twelvedaysofchristmas()
+if __name__ == '__main__':
+    twelvedaysofchristmas()
