@@ -1,5 +1,3 @@
-
-
 twelvedays = [
     ('first','Partridge in a Pear Tree'), ('second','Turtle Doves'),
     ('third','French Hens'),('forth','Calling Birds'),
@@ -8,6 +6,7 @@ twelvedays = [
     ('ninth', 'Ladies Dancing'),('tenth','Lords a Leaping'),
     ('eleventh','Pipers Piping'),('twelfth','Drummers Drumming')
     ]
+
 
 def twelvedaysofchristmas():
     for dayindex,day in enumerate(twelvedays):
