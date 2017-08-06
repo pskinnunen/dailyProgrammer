@@ -1,6 +1,6 @@
 import sys
 
-input_string = 'SOR XIC I1 BST XIC I2 NXB XIC O1 BND OTE O1 EOR'
+input_string = 'SOR XIC I1 XIO I2 OTL O1 EOR SOR XIC I2 OTU 01 EOR'
 ladder_representation = {
     'XIC':'-| |-','XIO':'-|/|-', 'OTE':'-( )-', 'OTL':'-(L)-',
     'OTU':'-(U)-'}
@@ -9,33 +9,37 @@ ladder_representation = {
 
 def generate_logic(ladder_input):
     split_input = ladder_input.split()
-    header_line = ''
-    logic_line = ''
-    line = 1
+    header_line = 0
+    logic_line = 1
+    curr_line = 1
+    graphic_output = list()
+    line_output = ['','']
     iterator = iter(split_input)
     for code in iterator:
         if code == 'SOR':
-            header_line += '  | '
-            logic_line += '{} |-'.format(line)
+            line_output[header_line] += '  | '
+            line_output[logic_line] += '{} |-'.format(curr_line)
         elif code == 'EOR':
-            header_line += ' |'
-            logic_line += '-|'
-            line += 1
+            line_output[header_line] += ' |'
+            line_output[logic_line] += '-|'
+            curr_line += 1
+            line_output.extend(['',''])
+            header_line += 2
+            logic_line += 2
         elif code in ladder_representation:
-            logic_line +=  ladder_representation[code]
+            line_output[logic_line] +=  ladder_representation[code]
             thing = next(iterator)
-            header_line += '{}'.format(thing).center(len(code) + len(thing))
+            line_output[header_line] += '{}'.format(thing).center(len(code) + len(thing))
         elif code == 'BST':
-            logic_line += '-+-'
-            header_line += '   '
+            line_output[logic_line] += '-+-'
+            line_output[header_line] += '   '
         elif code == 'NXB':
-            logic_line += ' +-'
-            header_line += ' | '
+            line_output[logic_line] += ' +-'
+            line_output[header_line] += ' | '
         elif code == 'BND':
-            logic_line += '-+ '
-            header_line += ' | '
-    print(header_line)
-    print(logic_line)
-
+            line_output[logic_line] += '-+ '
+            line_output[header_line] += ' | '
+    for line in line_output:
+        print(line)
 if __name__ == '__main__':
     generate_logic(input_string)
